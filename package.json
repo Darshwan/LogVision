@@ -4,16 +4,20 @@
   "description": "Beautiful, structured, and developer-friendly logs",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "test:formatter": "npm run build && node test-formatter.js",
+    "test:logger": "npm run build && node test-logger.js",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
-    "chalk": "^5.6.2",
-    "dayjs": "^1.11.18"
+    "chalk": "^5.3.0",
+    "dayjs": "^1.11.10"
   },
   "devDependencies": {
-    "@types/node": "^24.7.1",
-    "typescript": "^5.9.2"
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
   }
 }
