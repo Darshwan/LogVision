@@ -1,13 +1,18 @@
 {
   "name": "logvision",
-  "version": "0.1.0",
-  "description": "Beautiful, structured, and developer-friendly logs",
+  "version": "1.0.0",
+  "description": "Beautiful, structured, and developer-friendly logs — right from your terminal",
   "type": "module",
   "bin": {
     "logvision": "./bin/cli.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -15,8 +20,35 @@
     "test:logger": "npm run build && node test-logger.js",
     "test:interceptor": "npm run build && node test-interceptor.js",
     "test:cli": "npm run build && node test-cli.js",
-    "test:all": "npm run test:formatter && npm run test:logger && npm run test:interceptor && npm run test:cli",
+    "test:package": "npm run build && node test-package.js",
+    "test:all": "npm run test:formatter && npm run test:logger && npm run test:interceptor && npm run test:cli && npm run test:package",
+    "prepublishOnly": "npm run test:all",
     "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "logging",
+    "logger",
+    "console",
+    "beautify",
+    "cli",
+    "nodejs",
+    "typescript",
+    "pretty",
+    "format",
+    "output"
+  ],
+  "author": "Darshan Lamichhane lamichhane3848@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Darshwan/LogVision"
+  },
+  "bugs": {
+    "url": "https://github.com/Darshwan/LogVision/issues"
+  },
+  "homepage": "https://github.com/Darshwan/LogVision#readme",
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "chalk": "^5.3.0",
