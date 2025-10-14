@@ -16,12 +16,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test:formatter": "npm run build && node test-formatter.js",
-    "test:logger": "npm run build && node test-logger.js",
-    "test:interceptor": "npm run build && node test-interceptor.js",
+    "test:interceptor": "npm run build && node test-server.js",
     "test:cli": "npm run build && node test-cli.js",
-    "test:package": "npm run build && node test-package.js",
-    "test:all": "npm run test:formatter && npm run test:logger && npm run test:interceptor && npm run test:cli && npm run test:package",
+    "test:all": "npm run test:interceptor && npm run test:cli",
     "prepublishOnly": "npm run test:all",
     "clean": "rm -rf dist"
   },

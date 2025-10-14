@@ -1,0 +1,13 @@
+# Development files
+src/
+test-*
+tsconfig.json
+
+# Git
+.gitignore
+
+# OS
+.DS_Store
+
+# Logs
+*.log
