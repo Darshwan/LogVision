@@ -16,27 +16,39 @@ export function createCLI(): Command {
     .option('-m, --mode <mode>', 'Output mode (pretty, minimal, json)', 'pretty')
     .option('--no-colors', 'Disable colors')
     .action(async (script, options) => {
-      console.log(`📝 LogVision: Watching ${script} with ${options.mode} mode`);
-      
-      const interceptor = new ConsoleInterceptor({
-        outputMode: options.mode,
-        enableColors: options.colors,
-        dateFormat: 'YYYY-MM-DD HH:mm:ss'
-      });
+      try {
+        console.log(`📝 LogVision: Watching ${script} with ${options.mode} mode`);
+        
+        const interceptor = new ConsoleInterceptor({
+          outputMode: options.mode,
+          enableColors: options.colors,
+          dateFormat: 'YYYY-MM-DD HH:mm:ss'
+        });
 
-      interceptor.intercept();
+        interceptor.intercept();
 
-      const [command, ...args] = script.split(' ');
-      
-      const child = spawn(command, args, {
-        stdio: 'inherit',
-        shell: true
-      });
+        const [command, ...args] = script.split(' ');
+        
+        const child = spawn(command, args, {
+          stdio: 'inherit',
+          shell: true
+        });
 
-      child.on('exit', (code) => {
-        interceptor.restore();
-        process.exit(code || 0);
-      });
+        child.on('exit', (code) => {
+          interceptor.restore();
+          process.exit(code || 0);
+        });
+
+        child.on('error', (error) => {
+          console.error(`❌ LogVision: Failed to start process: ${error.message}`);
+          interceptor.restore();
+          process.exit(1);
+        });
+
+      } catch (error) {
+        console.error(`❌ LogVision: Error: ${error}`);
+        process.exit(1);
+      }
     });
 
   program
@@ -45,27 +57,39 @@ export function createCLI(): Command {
     .option('-m, --mode <mode>', 'Output mode (pretty, minimal, json)', 'pretty')
     .option('--no-colors', 'Disable colors')
     .action(async (command, options) => {
-      console.log(`📝 LogVision: Running ${command} with ${options.mode} mode`);
-      
-      const interceptor = new ConsoleInterceptor({
-        outputMode: options.mode,
-        enableColors: options.colors,
-        dateFormat: 'YYYY-MM-DD HH:mm:ss'
-      });
+      try {
+        console.log(`📝 LogVision: Running ${command} with ${options.mode} mode`);
+        
+        const interceptor = new ConsoleInterceptor({
+          outputMode: options.mode,
+          enableColors: options.colors,
+          dateFormat: 'YYYY-MM-DD HH:mm:ss'
+        });
 
-      interceptor.intercept();
+        interceptor.intercept();
 
-      const [cmd, ...args] = command.split(' ');
-      
-      const child = spawn(cmd, args, {
-        stdio: 'inherit',
-        shell: true
-      });
+        const [cmd, ...args] = command.split(' ');
+        
+        const child = spawn(cmd, args, {
+          stdio: 'inherit',
+          shell: true
+        });
 
-      child.on('exit', (code) => {
-        interceptor.restore();
-        process.exit(code || 0);
-      });
+        child.on('exit', (code) => {
+          interceptor.restore();
+          process.exit(code || 0);
+        });
+
+        child.on('error', (error) => {
+          console.error(`❌ LogVision: Failed to execute command: ${error.message}`);
+          interceptor.restore();
+          process.exit(1);
+        });
+
+      } catch (error) {
+        console.error(`❌ LogVision: Error: ${error}`);
+        process.exit(1);
+      }
     });
 
   return program;
