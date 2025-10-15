@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Beautiful, structured, and developer-friendly logs — right from your terminal",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "logvision": "./bin/cli.js"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "bin",
@@ -16,10 +16,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test:interceptor": "npm run build && node test-server.js",
-    "test:cli": "npm run build && node test-cli.js",
-    "test:all": "npm run test:interceptor && npm run test:cli",
-    "prepublishOnly": "npm run test:all",
+    "prepublishOnly": "npm run build && npm test",
     "clean": "rm -rf dist"
   },
   "keywords": [
@@ -29,31 +26,19 @@
     "beautify",
     "cli",
     "nodejs",
-    "typescript",
-    "pretty",
-    "format",
-    "output"
+    "typescript"
   ],
-  "author": "Darshan Lamichhane lamichhane3848@gmail.com",
+  "author": "Darshan Lamichhane lamichhane3848@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Darshwan/LogVision"
+    "url": "https://github.com/Darshwan/logvision"
   },
   "bugs": {
-    "url": "https://github.com/Darshwan/LogVision/issues"
+    "url": "https://github.com/Darshwan/logvision/issues"
   },
-  "homepage": "https://github.com/Darshwan/LogVision#readme",
+  "homepage": "https://github.com/Darshwan/logvision#readme",
   "engines": {
-    "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "chalk": "^5.3.0",
-    "commander": "^12.0.0",
-    "dayjs": "^1.11.10"
-  },
-  "devDependencies": {
-    "@types/node": "^20.10.0",
-    "typescript": "^5.3.0"
+    "node": ">=22.0.0"
   }
 }
