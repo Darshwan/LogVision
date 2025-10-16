@@ -217,7 +217,7 @@ npm test
 npm run dev
 ```
 # Contributing
-We welcome contributions! Please see our Contributing Guide for details.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/Darshwan/LogVision/blob/main/Contributing_Guide.md)  for details.
 
 1. Fork the repository
 
