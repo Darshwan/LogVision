@@ -20,8 +20,11 @@ pnpm add logvision
 // Install globally for CLI usage
 npm install -g logvision
 ```
+
 ## Quick Start
-### As a Library:
+
+### As a Library
+
 ```typescript
 import { createLogger } from "logvision";
 
@@ -36,14 +39,18 @@ log.success("Database connected");
 log.warn("Low disk space");
 log.error("Failed to fetch user data", { userId: 123, error: "Timeout" });
 ```
-#### Output:
+
+#### Output
+
 ```bash
 [2024-01-15 10:30:00] [MyApp] 🌿 INFO Server started on port 3000
 [2024-01-15 10:30:01] [MyApp] ✅ SUCCESS Database connected  
 [2024-01-15 10:30:02] [MyApp] ⚠️ WARN Low disk space
 [2024-01-15 10:30:03] [MyApp] ❌ ERROR Failed to fetch user data {"userId":123,"error":"Timeout"}
 ```
+
 ### Automatic Console Interception
+
 ```typescript
 import { interceptConsole } from "logvision";
 
@@ -54,7 +61,9 @@ console.log("This becomes pretty! 🌈");
 console.error("This becomes a formatted error! ❌");
 console.warn("This becomes a warning! ⚠️");
 ```
+
 ## Features
+
 - ✨ Beautiful, color-coded logs (INFO, SUCCESS, WARN, ERROR, DEBUG)
 - ⏰ Timestamps & context - Know when and where logs occurred
 - 🎯 Zero configuration - Works out of the box
@@ -67,6 +76,7 @@ console.warn("This becomes a warning! ⚠️");
 ## CLI Usage
 
 Once installed globally or used via npx:
+
 ```bash
 # Analyze log files
 npx logvision analyze ./logs/app.log
@@ -78,7 +88,9 @@ npx logvision run "npm start"
 // Watch with specific options
 npx logvision watch "node server.js" --mode json --no-colors
 ```
-#### Output Example:
+
+#### Output Example
+
 ```bash
 📊 LogVision Report
 ──────────────────────────────
@@ -88,7 +100,9 @@ Warnings: 9
 Last Error: 2025-10-13 14:02:11
 ──────────────────────────────
 ```
-## API Reference 
+
+## API Reference
+>
 > createLogger(options?: LoggerOptions): Logger
 
 | Option      | Type               | Default  | Description                 |
@@ -103,7 +117,9 @@ Last Error: 2025-10-13 14:02:11
 > interceptConsole(options?: LoggerOptions)
 
 Seamlessly intercepts console.log, console.error, etc.
+
 ## Logger Methods
+
 ```typescript
 const logger = createLogger({ name: "MyApp" });
 
@@ -120,8 +136,11 @@ logger.error("API call failed", {
   duration: "2.3s" 
 });
 ```
+
 ## 💡 Examples
+
 ### Express.js Application
+
 ```typescript
 import express from 'express';
 import { createLogger } from 'logvision';
@@ -138,7 +157,9 @@ app.listen(3000, () => {
   logger.success('Server started on port 3000');
 });
 ```
+
 ## Error Handling
+
 ```typescript
 try {
   // Some operation that might fail
@@ -151,7 +172,9 @@ try {
   });
 }
 ```
+
 ## Production JSON Logging
+
 ```typescript
 const logger = createLogger({
   name: 'MyApp',
@@ -160,28 +183,38 @@ const logger = createLogger({
   file: true    // Save to log file
 });
 ```
+
 ## 🎯 Output Modes
+
 ### Pretty Mode (Default)
+
 ```text
 [2024-01-15 10:30:00] [MyApp] 🌿 INFO Server started
 [2024-01-15 10:30:01] [MyApp] ✅ SUCCESS DB connected
 [2024-01-15 10:30:02] [MyApp] ⚠️ WARN High memory usage
 [2024-01-15 10:30:03] [MyApp] ❌ ERROR Request failed
 ```
+
 ### Minimal Mode
+
 ```text
 🌿 INFO Server started
 ✅ SUCCESS DB connected  
 ⚠️ WARN High memory usage
 ❌ ERROR Request failed
 ```
+
 ### JSON Mode
+
 ```bash
 {"timestamp":"2024-01-15T10:30:00.000Z","level":"INFO","message":"Server started","name":"MyApp"}
 {"timestamp":"2024-01-15T10:30:01.000Z","level":"SUCCESS","message":"DB connected","name":"MyApp"}
 ```
+
 ## Configuration
-#### Via Code:
+
+#### Via Code
+
 ```typescript
 const logger = createLogger({
   name: 'MyApp',
@@ -191,14 +224,18 @@ const logger = createLogger({
   level: 'DEBUG'
 });
 ```
-#### Via Environment Variables:
+
+#### Via Environment Variables
+
 ```bash
 LOGVISION_NAME=MyApp
 LOGVISION_COLOR=false
 LOGVISION_MODE=json
 LOGVISION_LEVEL=WARN
 ```
+
 ## Development
+
 ```bash
 // Clone repository
 git clone https://github.com/yourusername/logvision
@@ -217,7 +254,8 @@ npm test
 npm run dev
 ```
 # Contributing
-We welcome contributions! Please see our [Contributing Guide](https://github.com/Darshwan/LogVision/blob/main/Contributing_Guide.md)  for details.
+
+We welcome contributions! Please see our [Contributing Guide](https://github.com/Darshwan/LogVision/blob/main/CONTIBUTION_GUIDE.md)  for details.
 
 1. Fork the repository
 
@@ -230,10 +268,13 @@ We welcome contributions! Please see our [Contributing Guide](https://github.com
 5. Open a Pull Request
 
 # License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 # 🌟Show Your Support
+
 If you find this project helpful, please give it a ⭐️ on GitHub!
 
-#### Made with ❤️ for developers who care about their logs.
+#### Made with ❤️ for developers who care about their logs
+>
 >Because your terminal deserves to be beautiful.

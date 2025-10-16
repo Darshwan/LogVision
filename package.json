@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Beautiful, structured, and developer-friendly logs — right from your terminal",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "bin": {
     "logvision": "./bin/cli.js"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "bin",
@@ -16,7 +16,10 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "prepublishOnly": "npm run build && npm test",
+    "test:cli": "npm run build && node test-cli.js",
+    "test:server": "npm run build && node test-server.js",
+    "test:all": "npm run test:cli && npm run test:server",
+    "prepublishOnly": "npm run test:all",
     "clean": "rm -rf dist"
   },
   "keywords": [
@@ -26,7 +29,10 @@
     "beautify",
     "cli",
     "nodejs",
-    "typescript"
+    "typescript",
+    "pretty",
+    "format",
+    "output"
   ],
   "author": "Darshan Lamichhane lamichhane3848@gmail.com>",
   "license": "MIT",
@@ -40,5 +46,14 @@
   "homepage": "https://github.com/Darshwan/logvision#readme",
   "engines": {
     "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
   }
 }
